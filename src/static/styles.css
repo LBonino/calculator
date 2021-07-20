@@ -1,0 +1,101 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#calculator__container {
+    width: 24rem;
+    height: 30rem;
+    background-color: #222;
+    border: solid 3px #FFBF00;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 2px #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@font-face {
+    font-family: "digital";
+    src: url("./fonts/digital-7.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+#display {
+    width: 90%;
+    height: 15%;
+    margin: 20px 0;
+    background-color: rgb(235, 235, 235);
+    border: solid 2px #FFBF00;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 2px black inset;
+    display: flex;
+    justify-content: flex-end;
+    user-select: none;
+}
+
+#display__text {
+    margin-right: 3%;
+    align-self: center;
+    font-family: "digital";
+    font-size: 3rem;
+}
+
+#key__grid {
+    width: 90%;
+    height: 60%;
+    margin-bottom: 10%;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
+    gap: 10px;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("./fonts/Ubuntu-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.key {
+    color: white;
+    background-color: #333;
+    border: solid 2px #FFBF00;
+    border-radius: 0.3rem;
+    font-family: "ubuntu";
+    font-size: 1.4rem;
+}
+
+.key:hover {
+    background-color: rgb(61, 61, 61);
+}
+
+.key:active {
+    background-color: rgb(56, 56, 56);
+    font-size: 1.3rem;
+}
+
+.key--red {
+    border-color: red;
+}
+
+.key--lightblue {
+    border-color: rgb(72, 196, 253);
+}
+
+#key--equal {
+    grid-column: 4 / 6;
+    border-color: lime;
+}
+
+.key--turquoise {
+    border-color: #00ffbf;
+}
