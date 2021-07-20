@@ -42,7 +42,7 @@ body {
     user-select: none;
 }
 
-#display__text {
+#display__value {
     margin-right: 3%;
     align-self: center;
     font-family: "digital";
