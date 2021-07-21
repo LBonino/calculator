@@ -47,9 +47,42 @@ function populateDisplay() {
     }
 }
 
+function resetDisplay() {
+    if (currentOperation.operand1 && currentOperation.operand2 === null) {
+        currentOperation.operand2 = "0";
+        displayValue.textContent = "0";
+    }
+}
+
+function setOperand() {
+    if (!currentOperation.operand1) {
+        currentOperation.operand1 = displayValue.textContent;
+    }
+    else {
+        currentOperation.operand2 = displayValue.textContent;
+    }
+}
+
+function setOperator() {
+    currentOperation.operator = this.textContent;
+}
+
 const displayValue = document.querySelector("#display__value");
 const altersDisplayButtons = document.querySelectorAll(".key--alters-display");
 
 altersDisplayButtons.forEach(button => {
+    button.addEventListener("click", resetDisplay);
     button.addEventListener("click", populateDisplay);
-});  
+});
+
+const currentOperation = {
+    operand1: null,
+    operand2: null,
+    operator: null,
+};
+
+const operatorButtons = document.querySelectorAll(".key--operator");
+operatorButtons.forEach(button => {
+    button.addEventListener("click", setOperand);
+    button.addEventListener("click", setOperator);
+})
