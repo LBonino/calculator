@@ -49,17 +49,17 @@ function populateDisplay() {
 
 function resetDisplay() {
     if (currentOperation.operand1 && currentOperation.operand2 === null) {
-        currentOperation.operand2 = "0";
+        currentOperation.operand2 = 0;
         displayValue.textContent = "0";
     }
 }
 
 function setOperand() {
     if (!currentOperation.operand1) {
-        currentOperation.operand1 = displayValue.textContent;
+        currentOperation.operand1 = Number(displayValue.textContent);
     }
     else {
-        currentOperation.operand2 = displayValue.textContent;
+        currentOperation.operand2 = Number(displayValue.textContent);
     }
 }
 
