@@ -37,10 +37,12 @@ const currentOperation = {
     operand2: null,
     operator: null,
     result: null,
+    typingOperand2: false,
 };
 
 function resetDisplay() {
     if (currentOperation.operand1 && currentOperation.operand2 === null) {
+        currentOperation.typingOperand2 = true;
         displayValue.textContent = "0";
         currentOperation.operand2 = 0;
     }
@@ -74,6 +76,9 @@ function setOperand() {
         currentOperation.operand1 = Number(displayValue.textContent);
     }
     else {
+        if (currentOperation.typingOperand2 === false) {
+            return;
+        }
         currentOperation.operand2 = Number(displayValue.textContent);
     }
 }
@@ -86,7 +91,7 @@ const operatorButtons = document.querySelectorAll(".key--operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", setOperand);
     button.addEventListener("click", () => {
-        if (currentOperation.operand2 === null) {
+        if (currentOperation.operand2 === null || !currentOperation.typingOperand2) {
             return;
         }
         
@@ -97,13 +102,14 @@ operatorButtons.forEach(button => {
         currentOperation.operand1 = currentOperation.result;
         currentOperation.operand2 = null;
         currentOperation.result = null;
+        currentOperation.typingOperand2 = false;
     });
     button.addEventListener("click", setOperator);
 })
 
 const equalButton = document.querySelector("#key--equal");
 equalButton.addEventListener("click", () => {
-    if (currentOperation.operand1 === null) {
+    if (currentOperation.operand1 === null || !currentOperation.typingOperand2) {
         return;
     }
     
@@ -115,4 +121,5 @@ equalButton.addEventListener("click", () => {
     currentOperation.operand1 = null;
     currentOperation.operand2 = null;
     currentOperation.result = null;
+    currentOperation.typingOperand2 = false;
 });
