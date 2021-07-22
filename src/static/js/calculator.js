@@ -87,6 +87,18 @@ function setOperator() {
     currentOperation.operator = this.textContent;
 }
 
+function resetCurrentOperation(exceptions) {
+    Object.keys(currentOperation).forEach(property => {
+        if (exceptions) {
+            if (exceptions.includes(property)) {
+                return;
+            }
+        }
+
+        currentOperation[property] = (property === "typingOperand2") ? false : null;
+    })
+}
+
 const operatorButtons = document.querySelectorAll(".key--operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", setOperand);
@@ -100,9 +112,7 @@ operatorButtons.forEach(button => {
             toFixed(3));
         displayValue.textContent = currentOperation.result;
         currentOperation.operand1 = currentOperation.result;
-        currentOperation.operand2 = null;
-        currentOperation.result = null;
-        currentOperation.typingOperand2 = false;
+        resetCurrentOperation("operand1");
     });
     button.addEventListener("click", setOperator);
 })
@@ -118,8 +128,11 @@ equalButton.addEventListener("click", () => {
         operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator).
         toFixed(3));
     displayValue.textContent = currentOperation.result;
-    currentOperation.operand1 = null;
-    currentOperation.operand2 = null;
-    currentOperation.result = null;
-    currentOperation.typingOperand2 = false;
+    resetCurrentOperation();
 });
+
+const clearButton = document.querySelector("#key--clear");
+clearButton.addEventListener("click", () => {
+    displayValue.textContent = "0";
+    resetCurrentOperation();
+})
