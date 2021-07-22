@@ -29,6 +29,23 @@ function operate(operand1, operand2, operator) {
     }
 }
 
+const displayValue = document.querySelector("#display__value");
+const altersDisplayButtons = document.querySelectorAll(".key--alters-display");
+
+const currentOperation = {
+    operand1: null,
+    operand2: null,
+    operator: null,
+    result: null,
+};
+
+function resetDisplay() {
+    if (currentOperation.operand1 && currentOperation.operand2 === null) {
+        displayValue.textContent = "0";
+        currentOperation.operand2 = 0;
+    }
+}
+
 function getWidthPercentage(element) {
     return (element.offsetWidth * 100) / element.parentNode.offsetWidth;
 }
@@ -47,12 +64,10 @@ function populateDisplay() {
     }
 }
 
-function resetDisplay() {
-    if (currentOperation.operand1 && currentOperation.operand2 === null) {
-        currentOperation.operand2 = 0;
-        displayValue.textContent = "0";
-    }
-}
+altersDisplayButtons.forEach(button => {
+    button.addEventListener("click", resetDisplay);
+    button.addEventListener("click", populateDisplay);
+});
 
 function setOperand() {
     if (!currentOperation.operand1) {
@@ -67,22 +82,22 @@ function setOperator() {
     currentOperation.operator = this.textContent;
 }
 
-const displayValue = document.querySelector("#display__value");
-const altersDisplayButtons = document.querySelectorAll(".key--alters-display");
-
-altersDisplayButtons.forEach(button => {
-    button.addEventListener("click", resetDisplay);
-    button.addEventListener("click", populateDisplay);
-});
-
-const currentOperation = {
-    operand1: null,
-    operand2: null,
-    operator: null,
-};
-
 const operatorButtons = document.querySelectorAll(".key--operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", setOperand);
     button.addEventListener("click", setOperator);
 })
+
+const equalButton = document.querySelector("#key--equal");
+equalButton.addEventListener("click", () => {
+    if (!currentOperation.operand1) {
+        return;
+    }
+    
+    setOperand();
+    currentOperation.result = operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator);
+    displayValue.textContent = currentOperation.result;
+    currentOperation.operand1 = null;
+    currentOperation.operand2 = null;
+    currentOperation.result = null;
+});
