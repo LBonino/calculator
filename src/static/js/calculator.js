@@ -90,7 +90,9 @@ operatorButtons.forEach(button => {
             return;
         }
         
-        currentOperation.result = operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator);
+        currentOperation.result = Number(
+            operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator).
+            toFixed(3));
         displayValue.textContent = currentOperation.result;
         currentOperation.operand1 = currentOperation.result;
         currentOperation.operand2 = null;
@@ -106,7 +108,9 @@ equalButton.addEventListener("click", () => {
     }
     
     setOperand();
-    currentOperation.result = operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator);
+    currentOperation.result = Number(
+        operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator).
+        toFixed(3));
     displayValue.textContent = currentOperation.result;
     currentOperation.operand1 = null;
     currentOperation.operand2 = null;
