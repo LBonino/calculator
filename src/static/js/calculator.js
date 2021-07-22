@@ -85,6 +85,17 @@ function setOperator() {
 const operatorButtons = document.querySelectorAll(".key--operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", setOperand);
+    button.addEventListener("click", () => {
+        if (currentOperation.operand2 === null) {
+            return;
+        }
+        
+        currentOperation.result = operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator);
+        displayValue.textContent = currentOperation.result;
+        currentOperation.operand1 = currentOperation.result;
+        currentOperation.operand2 = null;
+        currentOperation.result = null;
+    });
     button.addEventListener("click", setOperator);
 })
 
