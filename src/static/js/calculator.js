@@ -70,7 +70,7 @@ altersDisplayButtons.forEach(button => {
 });
 
 function setOperand() {
-    if (!currentOperation.operand1) {
+    if (currentOperation.operand1 === null) {
         currentOperation.operand1 = Number(displayValue.textContent);
     }
     else {
@@ -90,7 +90,7 @@ operatorButtons.forEach(button => {
 
 const equalButton = document.querySelector("#key--equal");
 equalButton.addEventListener("click", () => {
-    if (!currentOperation.operand1) {
+    if (currentOperation.operand1 === null) {
         return;
     }
     
