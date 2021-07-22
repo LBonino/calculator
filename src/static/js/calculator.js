@@ -41,7 +41,7 @@ const currentOperation = {
 };
 
 function resetDisplay() {
-    if (currentOperation.operand1 && currentOperation.operand2 === null) {
+    if (currentOperation.operand1 !== null && currentOperation.operand2 === null) {
         currentOperation.typingOperand2 = true;
         displayValue.textContent = "0";
         currentOperation.operand2 = 0;
