@@ -155,3 +155,15 @@ function deleteLastCharacter() {
 
 const deleteButton = document.querySelector("#key--delete");
 deleteButton.addEventListener("click", deleteLastCharacter);
+
+const admittedKeys = Array.from(document.querySelectorAll(".key")).map(button => button.dataset.key);
+
+function handleKeyPress(e) {
+    if (!admittedKeys.includes(e.key)) {
+        return;
+    }
+
+    document.querySelector(`.key[data-key="${e.key}"]`).click();
+}
+
+window.addEventListener("keydown", handleKeyPress);
