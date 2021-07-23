@@ -2,20 +2,43 @@ html {
     font-size: 16px;
 }
 
+@font-face {
+    font-family: "ubuntu";
+    src: url("./fonts/Ubuntu-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    background: linear-gradient(to top, rgb(81, 93, 255), rgb(152, 167, 255)) no-repeat fixed;
+    font-family: "ubuntu";
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    margin-bottom: 0;
+    font-size: 1.2rem;
 }
 
 #calculator__container {
+    margin-top: 10%;
     width: 24rem;
     height: 30rem;
     background-color: #222;
     border: solid 3px #FFBF00;
     border-radius: 1rem;
-    box-shadow: 0 0 0 2px #222;
+    box-shadow: 0 0 0 2px #222, -5px 5px 10px #222;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -58,19 +81,11 @@ body {
     gap: 10px;
 }
 
-@font-face {
-    font-family: "ubuntu";
-    src: url("./fonts/Ubuntu-Medium.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
-
 .key {
     color: white;
     background-color: #333;
     border: solid 2px #FFBF00;
     border-radius: 0.3rem;
-    font-family: "ubuntu";
     font-size: 1.4rem;
 }
 
@@ -98,4 +113,17 @@ body {
 
 .key--turquoise {
     border-color: #00ffbf;
+}
+
+footer {
+    margin: 1% 0px;
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
