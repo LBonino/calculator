@@ -140,3 +140,14 @@ clearButton.addEventListener("click", () => {
     displayValue.textContent = "0";
     resetCurrentOperation();
 });
+
+function deleteLastCharacter() {
+    if (displayValue.textContent === "0") {
+        return;
+    }
+    
+    displayValue.textContent = displayValue.textContent.slice(0, displayValue.textContent.length - 1);
+}
+
+const deleteButton = document.querySelector("#key--delete");
+deleteButton.addEventListener("click", deleteLastCharacter);
