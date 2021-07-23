@@ -110,6 +110,8 @@ operatorButtons.forEach(button => {
         currentOperation.result = Number(
             operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator).
             toFixed(3));
+
+        currentOperation.result = (currentOperation.result === Infinity) ? "can't divide by zero" : currentOperation.result;
         displayValue.textContent = currentOperation.result;
         currentOperation.operand1 = currentOperation.result;
         resetCurrentOperation("operand1");
@@ -127,6 +129,8 @@ equalButton.addEventListener("click", () => {
     currentOperation.result = Number(
         operate(currentOperation.operand1, currentOperation.operand2, currentOperation.operator).
         toFixed(3));
+    
+    currentOperation.result = (currentOperation.result === Infinity) ? "can't divide by zero" : currentOperation.result;
     displayValue.textContent = currentOperation.result;
     resetCurrentOperation();
 });
@@ -135,4 +139,4 @@ const clearButton = document.querySelector("#key--clear");
 clearButton.addEventListener("click", () => {
     displayValue.textContent = "0";
     resetCurrentOperation();
-})
+});
